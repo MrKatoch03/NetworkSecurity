@@ -1,3 +1,8 @@
 python-dotenv
 pandas 
 numpy
+pymongo
+certifi
+
+# -e . 
+# Used when deploying code to cloud or while using pypi package
