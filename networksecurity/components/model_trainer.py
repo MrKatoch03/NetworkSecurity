@@ -24,6 +24,9 @@ from sklearn.ensemble import (
 import mlflow
 # import sklearn
 
+import dagshub
+dagshub.init(repo_owner='mridulkatoch12', repo_name='NetworkSecurity', mlflow=True)
+
 class ModelTrainer:
     def __init__(self,model_trainer_config: ModelTrainerConfig, data_transformation_artifact: DataTransformationArtifact):
         try:
@@ -68,11 +71,11 @@ class ModelTrainer:
             },
             "Gradient Boosting":{
                 # 'loss':['log_loss', 'exponential'],
-                'learning_rate':[.1,.01,.05,.001],
-                'subsample':[0.6,0.7,0.75,0.85,0.9],
-                # 'criterion':['squared_error', 'friedman_mse'],
-                # 'max_features':['auto','sqrt','log2'],
-                'n_estimators': [8,16,32,64,128,256]
+                # 'learning_rate':[.1,.01,.05,.001],
+                # 'subsample':[0.6,0.7,0.75,0.85,0.9],
+                # # 'criterion':['squared_error', 'friedman_mse'],
+                # # 'max_features':['auto','sqrt','log2'],
+                # 'n_estimators': [8,16,32,64,128,256]
             },
             "Logistic Regression":{},
             "AdaBoost":{
@@ -112,6 +115,8 @@ class ModelTrainer:
 
         Network_Model = NetworkModel(preprocessor=preprocessor,model=best_model)
         save_object(self.model_trainer_config.trained_model_file_path,obj=NetworkModel)
+
+        save_object("final_model/model.pkl",best_model)
 
         ## Model Trainer Artifact
 

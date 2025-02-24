@@ -6,7 +6,9 @@ certifi
 scikit-learn
 mlflow
 pyaml
-
+dagshub
+fastapi
+uvicorn
 
 # -e . 
 # Used when deploying code to cloud or while using pypi package
